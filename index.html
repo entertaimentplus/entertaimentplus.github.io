@@ -1,15 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Career Yug</title>
-    <script type="module" crossorigin src="/assets/index-eba35584.js"></script>
-    <link rel="stylesheet" href="/assets/index-2bbf7fe3.css">
-  </head>
-  <body>
-    <div id="root"></div>
-    
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        .header {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        .info {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .info span {
+            font-weight: 500;
+        }
+        .date-time {
+            font-size: 16px;
+            font-weight: 400;
+            margin-top: 20px;
+        }
+        .time {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4CAF50;
+        }
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+            .header {
+                font-size: 20px;
+            }
+            .info {
+                font-size: 16px;
+            }
+            .date-time {
+                font-size: 14px;
+            }
+        }
+    </style>
+    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="header">User Information</div>
+        <div class="date-time">
+            <div><span>Current Time:</span> <span id="time" class="time"></span></div>
+            <div><span>Date:</span> <span id="date"></span></div>
+            <div><span>Day:</span> <span id="day"></span></div>
+        </div>
+    </div>
+
+    <script>
+
+        // Function to update current time, date, and day
+        function updateDateTime() {
+            const now = new Date();
+            const time = now.toLocaleTimeString();
+            const date = now.toLocaleDateString();
+            const day = now.toLocaleString('en-US', { weekday: 'long' });
+            
+            document.getElementById('time').textContent = time;
+            document.getElementById('date').textContent = date;
+            document.getElementById('day').textContent = day;
+        }
+
+        // Update every second
+        setInterval(updateDateTime, 1000);
+        updateDateTime(); // Initial call to display the time immediately
+    </script>
+
+
+      <h1 id="ad-id">Loading Advertisement...</h1>
+
+    <script>
+        // Array of advertisement scripts with unique zoneIds
+        const adScripts = [
+            { id: 'swioqepyrb', zoneId: 'swioqepyrb' },
+            { id: '5tvpgox8jj', zoneId: '5tvpgox8jj' },
+            { id: 'grtmp0zpbn', zoneId: 'grtmp0zpbn' },
+            { id: 'tdqnt2ljta', zoneId: 'tdqnt2ljta' },
+            { id: 'tuxypjvumo', zoneId: 'tuxypjvumo' },
+            { id: 'tre0pepexu', zoneId: 'tre0pepexu' },
+            { id: 'vayhz5f1cj', zoneId: 'vayhz5f1cj' },
+            { id: '4lxw33dr7o', zoneId: '4lxw33dr7o' },
+            { id: 'ogvkg8mqgs', zoneId: 'ogvkg8mqgs' },
+            { id: 'vy0ft80uno', zoneId: 'vy0ft80uno' },
+            { id: 'f8b8moazts', zoneId: 'f8b8moazts' }
+        ];
+
+        // Function to get a random ad script from the array
+        function loadRandomAd() {
+            const randomIndex = Math.floor(Math.random() * adScripts.length);
+            const selectedAd = adScripts[randomIndex];
+
+            // Set the ID of the selected ad script in the h1 tag
+            document.getElementById("ad-id").innerText = "Loaded Script ID: " + selectedAd.zoneId;
+
+            // Run the selected ad script using aclib.runAutoTag
+            aclib.runAutoTag({
+                zoneId: selectedAd.zoneId
+            });
+        }
+
+        // Load a random ad when the page is loaded
+        window.onload = loadRandomAd;
+    </script>
+</body>
 </html>
