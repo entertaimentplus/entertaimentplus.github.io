@@ -64,14 +64,12 @@
             }
         }
     </style>
+    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+
 </head>
 <body>
     <div class="container">
         <div class="header">User Information</div>
-        <div class="info">
-            <div><span>IP Address:</span> <span id="ip">Loading...</span></div>
-            <div><span>Country:</span> <span id="country">Loading...</span></div>
-        </div>
         <div class="date-time">
             <div><span>Current Time:</span> <span id="time" class="time"></span></div>
             <div><span>Date:</span> <span id="date"></span></div>
@@ -80,29 +78,6 @@
     </div>
 
     <script>
-        // Fetch user IP and country using ip-api.com
-        fetch('http://ip-api.com/json')
-            .then(response => {
-                console.log('API Response:', response); // Debugging line
-                return response.json();
-            })
-            .then(data => {
-                console.log('API Data:', data); // Debugging line
-                // Populate IP and Country if data exists
-                if (data && data.status === 'success') {
-                    document.getElementById('ip').textContent = data.query || 'IP not available';
-                    document.getElementById('country').textContent = data.country || 'Country not available';
-                } else {
-                    document.getElementById('ip').textContent = 'Failed to fetch IP';
-                    document.getElementById('country').textContent = 'Failed to fetch Country';
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching IP data:', error);
-                // Display fallback message in case of an error
-                document.getElementById('ip').textContent = 'Error fetching IP';
-                document.getElementById('country').textContent = 'Error fetching country';
-            });
 
         // Function to update current time, date, and day
         function updateDateTime() {
@@ -119,6 +94,43 @@
         // Update every second
         setInterval(updateDateTime, 1000);
         updateDateTime(); // Initial call to display the time immediately
+    </script>
+
+
+      <h1 id="ad-id">Loading Advertisement...</h1>
+
+    <script>
+        // Array of advertisement scripts with unique zoneIds
+        const adScripts = [
+            { id: 'swioqepyrb', zoneId: 'swioqepyrb' },
+            { id: '5tvpgox8jj', zoneId: '5tvpgox8jj' },
+            { id: 'grtmp0zpbn', zoneId: 'grtmp0zpbn' },
+            { id: 'tdqnt2ljta', zoneId: 'tdqnt2ljta' },
+            { id: 'tuxypjvumo', zoneId: 'tuxypjvumo' },
+            { id: 'tre0pepexu', zoneId: 'tre0pepexu' },
+            { id: 'vayhz5f1cj', zoneId: 'vayhz5f1cj' },
+            { id: '4lxw33dr7o', zoneId: '4lxw33dr7o' },
+            { id: 'ogvkg8mqgs', zoneId: 'ogvkg8mqgs' },
+            { id: 'vy0ft80uno', zoneId: 'vy0ft80uno' },
+            { id: 'f8b8moazts', zoneId: 'f8b8moazts' }
+        ];
+
+        // Function to get a random ad script from the array
+        function loadRandomAd() {
+            const randomIndex = Math.floor(Math.random() * adScripts.length);
+            const selectedAd = adScripts[randomIndex];
+
+            // Set the ID of the selected ad script in the h1 tag
+            document.getElementById("ad-id").innerText = "Loaded Script ID: " + selectedAd.zoneId;
+
+            // Run the selected ad script using aclib.runAutoTag
+            aclib.runAutoTag({
+                zoneId: selectedAd.zoneId
+            });
+        }
+
+        // Load a random ad when the page is loaded
+        window.onload = loadRandomAd;
     </script>
 </body>
 </html>
