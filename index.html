@@ -80,8 +80,8 @@
     </div>
 
     <script>
-        // Fetch user IP and country using ip-api.com
-        fetch('http://ip-api.com/json')
+        // Use the HTTPS version of the API
+        fetch('https://ip-api.com/json')
             .then(response => response.json())
             .then(data => {
                 // Populate IP and Country
