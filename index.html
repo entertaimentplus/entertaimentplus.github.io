@@ -80,13 +80,22 @@
     </div>
 
     <script>
-        // Use the HTTPS version of the API
-        fetch('https://ip-api.com/json')
-            .then(response => response.json())
+        // Fetch user IP and country using ip-api.com
+        fetch('http://ip-api.com/json')
+            .then(response => {
+                console.log('API Response:', response); // Debugging line
+                return response.json();
+            })
             .then(data => {
-                // Populate IP and Country
-                document.getElementById('ip').textContent = data.ip || 'IP not available';
-                document.getElementById('country').textContent = data.country || 'Country not available';
+                console.log('API Data:', data); // Debugging line
+                // Populate IP and Country if data exists
+                if (data && data.status === 'success') {
+                    document.getElementById('ip').textContent = data.query || 'IP not available';
+                    document.getElementById('country').textContent = data.country || 'Country not available';
+                } else {
+                    document.getElementById('ip').textContent = 'Failed to fetch IP';
+                    document.getElementById('country').textContent = 'Failed to fetch Country';
+                }
             })
             .catch(error => {
                 console.error('Error fetching IP data:', error);
