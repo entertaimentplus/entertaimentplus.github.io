@@ -69,8 +69,8 @@
     <div class="container">
         <div class="header">User Information</div>
         <div class="info">
-            <div><span>IP Address:</span> <span id="ip"></span></div>
-            <div><span>Country:</span> <span id="country"></span></div>
+            <div><span>IP Address:</span> <span id="ip">Loading...</span></div>
+            <div><span>Country:</span> <span id="country">Loading...</span></div>
         </div>
         <div class="date-time">
             <div><span>Current Time:</span> <span id="time" class="time"></span></div>
@@ -80,15 +80,19 @@
     </div>
 
     <script>
-        // Fetch user IP and country using ip-api
-        fetch('https://ipinfo.io/json?token=your_token_here')
+        // Fetch user IP and country using ip-api.com
+        fetch('http://ip-api.com/json')
             .then(response => response.json())
             .then(data => {
-                document.getElementById('ip').textContent = data.ip;
-                document.getElementById('country').textContent = data.country;
+                // Populate IP and Country
+                document.getElementById('ip').textContent = data.ip || 'IP not available';
+                document.getElementById('country').textContent = data.country || 'Country not available';
             })
             .catch(error => {
                 console.error('Error fetching IP data:', error);
+                // Display fallback message in case of an error
+                document.getElementById('ip').textContent = 'Error fetching IP';
+                document.getElementById('country').textContent = 'Error fetching country';
             });
 
         // Function to update current time, date, and day
